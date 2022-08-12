@@ -19,13 +19,13 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有任何歌曲正在撥放");
             return message.reply({ embeds: [thing] });
         }
         const emojiequalizer = message.client.emoji.filter;
         const embed = new EmbedBuilder()
             .setColor(client.embedColor)
-            .setDescription(`Choose what filter you want in the button`)
+            .setDescription(`選擇一個特效`)
 
         const but = new ButtonBuilder().setCustomId("clear_but").setLabel("Clear").setStyle(ButtonStyle.Danger);
         const but2 = new ButtonBuilder().setCustomId("bass_but").setLabel("Bass").setStyle(ButtonStyle.Primary);
@@ -51,7 +51,7 @@ module.exports = {
         });
         collector.on("end", async () => {
             if (!m) return;
-            await m.edit({ embeds: [embed1.setDescription(`Time is up! Run ${prefix}filters`)] });
+            await m.edit({ embeds: [embed1.setDescription(`時間到! Run ${prefix}filters`)] });
         });
         collector.on("collect", async (b) => {
             if (!b.replied) await b.deferUpdate({ ephemeral: true });
