@@ -15,17 +15,17 @@ module.exports = {
         try {
             let data = await db.findOne({ Guild: message.guildId });
             if (args.length) {
-                if (!data) return await message.reply({ content: `This server doesn't have any song request channel setup to use this sub command.` });
+                if (!data) return await message.reply({ content: `此伺服器並未有任何生效的Song Request頻道可使用此指令` });
                 if (["clear", "delete", "reset"].includes(args[0])) {
                     await data.delete();
-                    return await message.reply('Successfully deleted all the setup data.');
+                    return await message.reply('成功刪除所有設置');
 
-                } else return await message.reply('Please provide a valid  command.');
+                } else return await message.reply('請提供正確指令');
             } else {
-                if (data) return await message.reply('Music setup is already finished in this server.');
+                if (data) return await message.reply('此設置已在伺服器生效');
 
                 const parentChannel = await message.guild.channels.create({
-                    name: `${client.user.username} Music Zone`,
+                    name: `${client.user.username} 音樂區`,
                     type: ChannelType.GuildCategory,
                     permissionOverwrites: [
                         {
@@ -41,10 +41,10 @@ module.exports = {
                     ]
                 });
                 const textChannel = await message.guild.channels.create({
-                    name: `${client.user.username}-song-requests`,
+                    name: `${client.user.username} 點歌區`,
                     type: ChannelType.GuildText,
                     parent: parentChannel.id,
-                    topic: '',
+                    topic: '在此頻道丟上歌單/網址或音樂名稱!',
                     permissionOverwrites: [
                         {
                             type: "member",
@@ -81,7 +81,7 @@ module.exports = {
                 };
 
                 const voiceChannel = await message.guild.channels.create({
-                    name: `${client.user.username} Music`,
+                    name: `${client.user.username} 頻道`,
                     type: ChannelType.GuildVoice,
                     parent: parentChannel.id,
                     bitrate: rate,
@@ -108,10 +108,10 @@ module.exports = {
                 let player = client.manager.get(message.guildId);
                 if (player) disabled = false;
 
-                const title = player && player.queue && player.queue.current ? `Now playing` : "Nothing is playing right now";
+                const title = player && player.queue && player.queue.current ? `Now playing` : "沒有歌曲正在撥放";
                 const desc = player && player.queue && player.queue.current ? `[${player.queue.current.title}](${player.queue.current.uri})` : null;
                 const footer = {
-                    text: player && player.queue && player.queue.current ? `Requested by ${player.queue.current.requester.username}` : null,
+                    text: player && player.queue && player.queue.current ? `請求者 ${player.queue.current.requester.username}` : null,
                     iconURL: player && player.queue && player.queue.current ? `${player.queue.current.requester.displayAvatarURL()}` : `${client.user.displayAvatarURL()}`
                 };
                 const image = client.config.links.img;
@@ -146,7 +146,7 @@ module.exports = {
 
                 await Ndata.save();
                 return await message.channel.send({
-                    embeds: [new EmbedBuilder().setColor(client.embedColor).setTitle("Setup Finished").setDescription(`**Song request channel has been created.**\n\nChannel: ${textChannel}\n\nNote: Deleting the template embed in there may cause this setup to stop working. (Please don't delete it.)*`).setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL() })]
+                    embeds: [new EmbedBuilder().setColor(client.embedColor).setTitle("完成設置").setDescription(`**歌曲請求頻道已建立.**\n\n頻道: ${textChannel}\n\n注意: 請勿亂刪除該頻道的embed訊息，以免造成錯誤且無法正常運作*`).setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL() })]
                 });
             };
         } catch (err) {
