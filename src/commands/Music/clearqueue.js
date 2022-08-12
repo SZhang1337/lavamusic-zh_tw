@@ -20,7 +20,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有任何歌曲正在撥放");
             return message.reply({ embeds: [thing] });
         }
 
@@ -31,7 +31,7 @@ module.exports = {
         let thing = new EmbedBuilder()
             .setColor(message.client.embedColor)
             .setTimestamp()
-            .setDescription(`${emojieject} Removed all songs from the queue.`)
+            .setDescription(`${emojieject} 已清除所有列表中的歌曲`)
         return message.reply({ embeds: [thing] });
     }
 };
