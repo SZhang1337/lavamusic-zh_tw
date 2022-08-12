@@ -14,16 +14,16 @@ module.exports = {
 
         let data = await db.findOne({ Guild: message.guild.id });
 
-        if(!data) return message.reply({embeds:[new EmbedBuilder().setDescription(`You don't have a DJ setup in this Guild!`).setColor(client.embedColor)]})
+        if(!data) return message.reply({embeds:[new EmbedBuilder().setDescription(`此伺服器尚未設置DJ`).setColor(client.embedColor)]})
 
         let mode = false;
         if(!data.Mode)mode = true;
         data.Mode = mode;
         await data.save();
         if(mode) {
-            await message.reply({embeds: [new EmbedBuilder().setDescription(`Enabled DJ Mode.`).setColor(client.embedColor)]})
+            await message.reply({embeds: [new EmbedBuilder().setDescription(`DJ模式已開啟`).setColor(client.embedColor)]})
         } else {
-           return await message.reply({embeds: [new EmbedBuilder().setDescription(`Disabled DJ Mode.`).setColor(client.embedColor)]})
+           return await message.reply({embeds: [new EmbedBuilder().setDescription(`DJ模式已關閉`).setColor(client.embedColor)]})
         }
     }
 }
