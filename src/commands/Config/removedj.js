@@ -15,8 +15,8 @@ module.exports = {
         let data = await db.findOne({ Guild: message.guild.id });
         if (data) {
             await data.delete()
-            return message.reply({ embeds: [new EmbedBuilder().setDescription(`Successfully removed all DJ Roles.`).setColor(client.embedColor)] })
-        } else return message.reply({ embeds: [new EmbedBuilder().setDescription(`You don't have any DJ setup in this Guild!`).setColor(client.embedColor)] })
+            return message.reply({ embeds: [new EmbedBuilder().setDescription(`成功移除所有DJ身分組`).setColor(client.embedColor)] })
+        } else return message.reply({ embeds: [new EmbedBuilder().setDescription(`此群組尚未設置任何DJ!`).setColor(client.embedColor)] })
 
     }
 }
