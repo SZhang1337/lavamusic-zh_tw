@@ -21,7 +21,7 @@ module.exports = {
     
     if (!player.queue.current)
       return message.reply({
-        content: `Please start a song before doing this action`,
+        content: `請先點歌後再使用此指令`,
       });
     
     if (autoplay === false) {
@@ -35,7 +35,7 @@ module.exports = {
       let thing = new EmbedBuilder()
         .setColor(client.embedColor)
         .setTimestamp()
-        .setDescription(`${emojireplay} Autoplay is now **enabled**`);
+        .setDescription(`${emojireplay} 自動撥放 **已開啟**`);
       return message.channel.send({ embeds: [thing] });
     } else {
       player.set("autoplay", false);
@@ -43,7 +43,7 @@ module.exports = {
       let thing = new EmbedBuilder()
         .setColor(client.embedColor)
         .setTimestamp()
-        .setDescription(`${emojireplay} Autoplay is now **disabled**`);
+        .setDescription(`${emojireplay} 自動撥放 **已關閉**`);
 
       return message.channel.send({ embeds: [thing] });
     }
