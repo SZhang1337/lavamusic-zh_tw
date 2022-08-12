@@ -20,27 +20,27 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有任何音樂正在撥放");
             return message.reply({ embeds: [thing] });
         }
         const emojiloop = message.client.emoji.loop;
 
         if (args.length && /queue/i.test(args[0])) {
             player.setQueueRepeat(!player.queueRepeat);
-            const queueRepeat = player.queueRepeat ? "enabled" : "disabled";
+            const queueRepeat = player.queueRepeat ? "開啟" : "關閉";
             let thing = new EmbedBuilder()
                 .setColor(message.client.embedColor)
                 .setTimestamp()
-                .setDescription(`${emojiloop} Loop queue is now **${queueRepeat}**`)
+                .setDescription(`${emojiloop} 重播清單已 **${queueRepeat}**`)
             return message.reply({ embeds: [thing] });
         }
 
         player.setTrackRepeat(!player.trackRepeat);
-        const trackRepeat = player.trackRepeat ? "enabled" : "disabled";
+        const trackRepeat = player.trackRepeat ? "開啟" : "關閉";
         let thing = new EmbedBuilder()
             .setColor(message.client.embedColor)
             .setTimestamp()
-            .setDescription(`${emojiloop} Loop track is now **${trackRepeat}**`)
+            .setDescription(`${emojiloop} 重播單曲已 **${trackRepeat}**`)
         return message.reply({ embeds: [thing] });
     }
 };
