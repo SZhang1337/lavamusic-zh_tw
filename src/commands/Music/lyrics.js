@@ -18,7 +18,7 @@ module.exports = {
       embeds: [
         new EmbedBuilder()
           .setColor(client.embedColor)
-          .setDescription("🔎 **Searching...**"),
+          .setDescription("🔎 **搜尋中...**"),
       ],
     });
 
@@ -30,7 +30,7 @@ module.exports = {
         embeds: [
           new EmbedBuilder()
             .setColor("Red")
-            .setDescription("Lavalink node is not connected"),
+            .setDescription("Lavalink node 尚未連線"),
         ],
       });
     }
@@ -40,7 +40,7 @@ module.exports = {
         embeds: [
           new EmbedBuilder()
             .setColor("Red")
-            .setDescription("There's nothing playing"),
+            .setDescription("並未有任何歌曲正在撥放"),
         ],
       });
     }
@@ -62,7 +62,7 @@ module.exports = {
           new EmbedBuilder()
             .setColor("Red")
             .setDescription(
-              `❌ | No lyrics found for ${search}!\nMake sure you typed in your search correctly.`
+              `❌ | 無法找到關於 ${search} 的歌詞!\n請確認您的字是否有誤`
             ),
         ],
       });
@@ -80,7 +80,7 @@ module.exports = {
       text = text.substring(0, 4090) + "[...]";
       lyricsEmbed
         .setDescription(text)
-        .setFooter({ text: "Truncated, the lyrics were too long." });
+        .setFooter({ text: "斷尾了，太長了" });
     }
 
     return message.channel.send({ embeds: [lyricsEmbed] });
