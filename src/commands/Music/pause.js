@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有歌曲正在撥放");
             return message.reply({embeds: [thing]});
         }
 
@@ -28,7 +28,7 @@ module.exports = {
         if (player.paused) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription(`${emojipause} The player is already paused.`)
+                .setDescription(`${emojipause} 音樂早已暫停`)
                 .setTimestamp()
                 return message.reply({embeds: [thing]});
         }
@@ -40,7 +40,7 @@ module.exports = {
         let thing = new EmbedBuilder()
             .setColor(client.embedColor)
             .setTimestamp()
-            .setDescription(`${emojipause} **Paused**\n[${song.title}](${song.uri})`)
+            .setDescription(`${emojipause} **已暫停撥放**\n[${song.title}](${song.uri})`)
           return message.reply({embeds: [thing]});
 	
     }
