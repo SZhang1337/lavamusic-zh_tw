@@ -21,7 +21,7 @@ execute: async (message, args, client, prefix) => {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有歌曲正在撥放");
             return message.channel.send({ embeds: [thing] });
         }
         const song = player.queue.current
@@ -30,7 +30,7 @@ execute: async (message, args, client, prefix) => {
         var current = player.position;
         
         let embed = new EmbedBuilder()
-            .setDescription(`${emojimusic} **Now Playing**\n[${song.title}](${song.uri}) - \`[${convertTime(song.duration)}]\`- [${song.requester}] \n\n\`${progressbar(player)}\``)
+            .setDescription(`${emojimusic} **正在播放**\n[${song.title}](${song.uri}) - \`[${convertTime(song.duration)}]\`- [${song.requester}] \n\n\`${progressbar(player)}\``)
             .setThumbnail(song.displayThumbnail("3"))
             .setColor(client.embedColor)
             .addFields([
