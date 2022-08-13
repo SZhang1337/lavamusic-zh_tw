@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有歌曲正在撥放");
             return message.reply({embeds: [thing]});
         }
 
@@ -28,7 +28,7 @@ module.exports = {
         const number = (position + 1);
          let thing = new EmbedBuilder()
             .setColor("Red")
-            .setDescription(`No songs at number ${number}.\nTotal Songs: ${player.queue.size}`);
+            .setDescription(`沒有歌曲在第 ${number}.\n歌曲數目: ${player.queue.size}`);
             return message.reply({embeds: [thing]});
         }
 
@@ -40,7 +40,7 @@ module.exports = {
 		let thing = new EmbedBuilder()
 			.setColor(client.embedColor)
 			.setTimestamp()
-			.setDescription(`${emojieject} Removed\n[${song.title}](${song.uri})`)
+			.setDescription(`${emojieject} 已移除\n[${song.title}](${song.uri})`)
 		  return message.reply({embeds: [thing]});
 	
     }
