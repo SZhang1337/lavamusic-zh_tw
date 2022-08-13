@@ -25,7 +25,7 @@ module.exports = {
 
     if (!player.queue.current)
       return message.reply({
-        content: `Please start a song before doing this action`,
+        content: `請點歌後再使用此權限`,
       });
     if (!player)
       return message.channel.send({
@@ -33,7 +33,7 @@ module.exports = {
           new EmbedBuilder()
             .setColor(client.embedColor)
             .setTimestamp()
-            .setDescription(`Nothing is playing right now.`),
+            .setDescription(`沒有歌曲正在撥放`),
         ],
       });
 
@@ -43,7 +43,7 @@ module.exports = {
           new EmbedBuilder()
             .setColor(client.embedColor)
             .setTimestamp()
-            .setDescription(`Nothing is playing right now.`),
+            .setDescription(`沒有歌曲正在撥放`),
         ],
       });
 
@@ -160,7 +160,7 @@ module.exports = {
             else {
               b.reply({
                 ephemeral: true,
-                content: `Only **${message.author.tag}** can use this button, if you want then you've to run the command again.`,
+                content: `只有 **${message.author.tag}** 可以使用以下按鈕，若您想使用，您需自行打出同樣指令`,
               });
               return false;
             }
