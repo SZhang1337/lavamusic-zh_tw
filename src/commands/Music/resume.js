@@ -4,7 +4,7 @@ module.exports = {
 	name: "resume",
     aliases: ["r"],
     category: "Music",
-    description: "Resume currently playing music",
+    description: "暫停當前的音樂",
     args: false,
     usage: "<Number of song in queue>",
     userPerms: [],
@@ -21,7 +21,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有任何歌曲正在播放");
             return message.reply({embeds: [thing]});
         }
 
@@ -30,7 +30,7 @@ module.exports = {
         if (!player.paused) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription(`${emojiresume} The player is already **resumed**.`)
+                .setDescription(`${emojiresume} 此次播放已 **繼續播放**.`)
                 .setTimestamp()
           return message.reply({embeds: [thing]});
         }
@@ -38,7 +38,7 @@ module.exports = {
         player.pause(false);
 
         let thing = new EmbedBuilder()
-            .setDescription(`${emojiresume} **Resumed**\n[${song.title}](${song.uri})`)
+            .setDescription(`${emojiresume} **繼續播放**\n[${song.title}](${song.uri})`)
             .setColor(client.embedColor)
             .setTimestamp()
         return message.reply({embeds: [thing]});
