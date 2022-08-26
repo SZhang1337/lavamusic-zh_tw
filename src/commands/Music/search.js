@@ -6,7 +6,7 @@ module.exports = {
     description: "search for a song from youtube",
     category: "Music",
     aliases: [],
-    usage: [`serach Never gonna give you up`],
+    usage: [`搜尋瑞克搖`],
     args: true,
     userPrems: [],
     owner: false,
@@ -16,8 +16,8 @@ module.exports = {
    execute: async (message, args, client) => { 
 
     const { channel } = message.member.voice;
-    if (!message.guild.members.me.permissionsIn(channel).has([PermissionFlagsBits.Connect, PermissionFlagsBits.Speak])) return message.channel.send({embeds: [new EmbedBuilder().setColor(client.embedColor).setDescription(`I don't have enough permissions to connect to your VC. Please give me permission \`CONNECT\` or \`SPEAK\`.`)]});
-    if (!message.guild.members.me.permissions.has([PermissionFlagsBits.Connect, PermissionFlagsBits.Speak])) return message.channel.send({embeds: [new EmbedBuilder().setColor(client.embedColor).setDescription(`I don't have enough permissions to execute this command! please give me permission \`CONNECT\` or \`SPEAK\`.`)]});
+    if (!message.guild.members.me.permissionsIn(channel).has([PermissionFlagsBits.Connect, PermissionFlagsBits.Speak])) return message.channel.send({embeds: [new EmbedBuilder().setColor(client.embedColor).setDescription(`我沒有足夠的權限進入語音，請給我 \`連線\` 或者 \`講話\`權限。`)]});
+    if (!message.guild.members.me.permissions.has([PermissionFlagsBits.Connect, PermissionFlagsBits.Speak])) return message.channel.send({embeds: [new EmbedBuilder().setColor(client.embedColor).setDescription(`我沒有足夠的權限來行使這個指令，請給我 \`連線\` 或者 \`講話\`權限。`)]});
 
     let player = message.client.manager.get(message.guildId);
     if(!player)
@@ -32,7 +32,7 @@ module.exports = {
 
     const query = args.join(" ");
   
-    const msg = await message.channel.send({embeds: [new EmbedBuilder().setColor(client.embedColor).setDescription(`? Searching ${query} song please wait`)]})
+    const msg = await message.channel.send({embeds: [new EmbedBuilder().setColor(client.embedColor).setDescription(`? 正在搜尋 ${query} ， 請稍候..`)]})
     
     const but = new ButtonBuilder().setCustomId("s_one").setLabel("1").setStyle(ButtonStyle.Success);
     const but2 = new ButtonBuilder().setCustomId("s_two").setLabel("2").setStyle(ButtonStyle.Success);
@@ -48,7 +48,7 @@ module.exports = {
         case "TRACK_LOADED":
             player.queue.add(s.tracks[0]);
             const embed = new EmbedBuilder()
-             .setDescription(`${emojiplaylist} **Added to queue** - [${s.tracks[0].title}](${s.tracks[0].uri}) \`${convertTime(s.tracks[0].duration, true)}\` • ${s.tracks[0].requester}`)
+             .setDescription(`${emojiplaylist} **新增至清單** - [${s.tracks[0].title}](${s.tracks[0].uri}) \`${convertTime(s.tracks[0].duration, true)}\` • ${s.tracks[0].requester}`)
              .setColor(client.embedColor)
 
             msg.edit({ embeds: [embed] });
@@ -60,7 +60,7 @@ module.exports = {
              const results = s.tracks.slice(0, 5).map(x => `• ${index++} | [${x.title}](${x.uri}) \`${convertTime(x.duration)}\``)
                     .join("\n");
                     const searched = new EmbedBuilder()
-                        .setTitle("Select the track that you want")
+                        .setTitle("選擇您想要的音樂")
                         .setColor(client.embedColor)
                         .setDescription(results);
 
@@ -87,30 +87,30 @@ module.exports = {
                     player.queue.add(s.tracks[0]);
                         if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
  
-                        if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **Added to queue** - [${s.tracks[0].title}](${s.tracks[0].uri}) \`${convertTime(s.tracks[0].duration, true)}\` • ${s.tracks[0].requester}`)]})
+                        if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **已新增到待播** - [${s.tracks[0].title}](${s.tracks[0].uri}) \`${convertTime(s.tracks[0].duration, true)}\` • ${s.tracks[0].requester}`)]})
                 } else if(b.customId === "s_two") {
                     player.queue.add(s.tracks[1]);
                     if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **Added to queue** - [${s.tracks[1].title}](${s.tracks[1].uri}) \`${convertTime(s.tracks[1].duration, true)}\` • ${s.tracks[1].requester}`)]})
+                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **已新增到待播** - [${s.tracks[1].title}](${s.tracks[1].uri}) \`${convertTime(s.tracks[1].duration, true)}\` • ${s.tracks[1].requester}`)]})
             
                 } else if(b.customId === "s_three") {
                     player.queue.add(s.tracks[2]);
                     if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **Added to queue** - [${s.tracks[2].title}](${s.tracks[2].uri}) \`${convertTime(s.tracks[2].duration, true)}\` • ${s.tracks[2].requester}`)]})
+                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **已新增到待播** - [${s.tracks[2].title}](${s.tracks[2].uri}) \`${convertTime(s.tracks[2].duration, true)}\` • ${s.tracks[2].requester}`)]})
             
                 } else if(b.customId === "s_four") {
                     player.queue.add(s.tracks[3]);
                     if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **Added to queue** - [${s.tracks[3].title}](${s.tracks[3].uri}) \`${convertTime(s.tracks[3].duration, true)}\` • ${s.tracks[3].requester}`)]})
+                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **已新增到待播** - [${s.tracks[3].title}](${s.tracks[3].uri}) \`${convertTime(s.tracks[3].duration, true)}\` • ${s.tracks[3].requester}`)]})
             
                 } else if(b.customId === "s_five") {
                     player.queue.add(s.tracks[4]);
                     if(player && player.state === "CONNECTED" && !player.playing && !player.paused && !player.queue.size) await player.play();
 
-                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **Added to queue** - [${s.tracks[4].title}](${s.tracks[4].uri}) \`${convertTime(s.tracks[4].duration, true)}\` • ${s.tracks[4].requester}`)]})
+                    if(msg) await msg.edit({embeds: [search.setDescription(`${emojiplaylist} **已新增到待播** - [${s.tracks[4].title}](${s.tracks[4].uri}) \`${convertTime(s.tracks[4].duration, true)}\` • ${s.tracks[4].requester}`)]})
             
                 }
  
