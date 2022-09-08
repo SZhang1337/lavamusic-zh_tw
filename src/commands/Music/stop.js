@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有歌曲正在播放");
             return message.reply({embeds: [thing]});
         }
 
@@ -36,7 +36,7 @@ module.exports = {
 		    let thing = new EmbedBuilder()
             .setColor(client.embedColor)
             .setTimestamp()
-            .setDescription(`${emojistop} Stopped the music`)
+            .setDescription(`${emojistop} 已停止播放`)
         message.reply({embeds: [thing]});
 	
   	}
