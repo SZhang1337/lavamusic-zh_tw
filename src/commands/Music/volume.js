@@ -20,7 +20,7 @@ execute: async (message, args, client, prefix) => {
         if (!player.queue.current) {
             let thing = new EmbedBuilder()
                 .setColor("Red")
-                .setDescription("There is no music playing.");
+                .setDescription("沒有歌曲正在播放");
             return message.reply({embeds: [thing]});
 		}
 		
@@ -30,7 +30,7 @@ execute: async (message, args, client, prefix) => {
 			let thing = new EmbedBuilder()
 			.setColor(client.embedColor)
 			.setTimestamp()
-			.setDescription(`${volumeEmoji} The current volume is: **${player.volume}%**`)
+			.setDescription(`${volumeEmoji} 現在音量為: **${player.volume}%**`)
 			return message.reply({embeds: [thing]});
 		}
 
@@ -50,20 +50,20 @@ execute: async (message, args, client, prefix) => {
 			let thing = new EmbedBuilder()
 				.setColor(client.embedColor)
 				.setTimestamp()
-				.setDescription(`${emojivolume} Volume set to: **${volume}%**`)
+				.setDescription(`${emojivolume} 音量已調整至: **${volume}%**`)
 		  return message.reply({embeds: [thing]});
 		} else if (volume < player.volume) {
 			var emojivolume = message.client.emoji.volumelow;
 			let thing = new EmbedBuilder()
 				.setColor(client.embedColor)
 				.setTimestamp()
-				.setDescription(`${emojivolume} Volume set to: **${volume}%**`)
+				.setDescription(`${emojivolume} 音量已調整至: **${volume}%**`)
 		  return message.reply({embeds: [thing]});
 		} else {
 			let thing = new EmbedBuilder()
 				.setColor(client.embedColor)
 				.setTimestamp()
-				.setDescription(`${volumeEmoji} Volume set to: **${volume}%**`)
+				.setDescription(`${volumeEmoji} 音量已調整至o: **${volume}%**`)
 			return message.reply({embeds: [thing]});
 		}
 		
